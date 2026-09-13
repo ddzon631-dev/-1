@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="kk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Мейрам & Нуркен — Тойға шақыру / Свадебное приглашение</title>
+
+    <!-- Google Fonts: Cormorant Garamond (Serif) & Montserrat (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-paper': '#FCFBF9',
+                        'bg-card': '#FFFFFF',
+                        'accent-gold': '#C5A059',
+                        'accent-gold-dark': '#9A7B3E',
+                        'accent-gold-light': '#F4ECE1',
+                        'text-dark': '#1F1E1D',
+                        'text-muted': '#55514D',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FCFBF9;
+            color: #1F1E1D;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px; /* Large base font size for maximum legibility */
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Gold Gradient Text Effect */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #B89248 0%, #D8B268 50%, #8C6A28 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Subtle background ornament grid */
+        .bg-pattern {
+            background-image: radial-gradient(#C5A059 0.6px, transparent 0.6px);
+            background-size: 20px 20px;
+            opacity: 0.12;
+        }
+
+        /* Slow rotating border animation for monogram */
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-rotate-slow {
+            animation: rotateSlow 30s linear infinite;
+        }
+
+        /* High contrast glass card styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(197, 160, 89, 0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* Focus rings for tap accessibility */
+        input:focus, select:focus, textarea:focus, button:focus {
+            outline: 3px solid #C5A059 !important;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-accent-gold-light selection:text-text-dark">
+
+    <div class="fixed inset-0 bg-pattern pointer-events-none z-0"></div>
+
+    <header class="fixed top-0 left-0 right-0 z-50 p-3 bg-white/90 backdrop-blur-md border-b border-accent-gold/20 shadow-sm">
+        <div class="max-w-md mx-auto flex items-center justify-between px-2">
+            
+            <!-- Language Selection Switches -->
+            <div class="inline-flex rounded-xl p-1 bg-accent-gold-light border border-accent-gold/30">
+                <button id="lang-kk" onclick="setLanguage('kk')" class="px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 bg-accent-gold text-white shadow-sm">
+                    ҚАЗ
+                </button>
+                <button id="lang-ru" onclick="setLanguage('ru')" class="px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 text-text-muted hover:text-text-dark">
+                    РУС
+                </button>
+            </div>
+
+            <!-- Music Player Controller -->
+            <button id="music-toggle" onclick="toggleAudio()" aria-label="Музыканы қосу / Выключить музыку" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-accent-gold-light text-accent-gold-dark font-semibold text-xs border border-accent-gold/40 hover:bg-accent-gold/20 transition-all">
+                <i data-lucide="music" class="w-5 h-5 text-accent-gold-dark animate-pulse"></i>
+                <span id="music-text">Музыка</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-md mx-auto min-h-screen bg-bg-paper pt-16 shadow-2xl border-x border-accent-gold/10">
+
+        <section class="relative min-h-[90vh] flex flex-col justify-between items-center text-center px-6 py-10">
+            
+            <!-- Floral Ornament Top SVG -->
+            <div class="pt-4">
+                <svg class="w-28 h-auto mx-auto text-accent-gold" viewBox="0 0 100 30" fill="currentColor">
+                    <path d="M50,0 C60,10 75,10 90,5 C80,15 80,25 95,30 C80,25 70,25 50,15 C30,25 20,25 5,30 C20,25 20,15 10,5 C25,10 40,10 50,0 Z" opacity="0.8"/>
+                    <circle cx="50" cy="15" r="3" />
+                </svg>
+            </div>
+
+            <div class="space-y-5 my-auto w-full">
+                <!-- Subtitle Badge -->
+                <p data-i18n="hero_subtitle" class="tracking-[0.2em] text-sm uppercase text-accent-gold-dark font-bold bg-accent-gold-light/80 py-1.5 px-4 rounded-full inline-block border border-accent-gold/20">
+                    ТОЙҒА ШАҚЫРУ
+                </p>
+
+                <!-- Monogram Circle -->
+                <div class="relative w-40 h-40 mx-auto flex items-center justify-center my-6">
+                    <div class="absolute inset-0 rounded-full border-2 border-dashed border-accent-gold/60 animate-rotate-slow"></div>
+                    <div class="absolute inset-2 rounded-full border border-accent-gold/30"></div>
+                    <div class="font-serif text-5xl gold-gradient-text italic font-bold">
+                        S & R
+                    </div>
+                </div>
+
+                <!-- Groom & Bride Names -->
+                <div class="space-y-1">
+                    <h1 class="font-serif text-5xl sm:text-6xl text-text-dark font-semibold leading-tight">
+                        Мейрам <br>
+                        <span class="font-script text-4xl sm:text-5xl text-accent-gold block my-1">&</span>
+                        Нуркен
+                    </h1>
+                </div>
+
+                <div class="w-16 h-0.5 bg-accent-gold mx-auto my-4"></div>
+
+                <!-- Event Date Banner -->
+                <div class="bg-accent-gold/10 py-3 px-6 rounded-2xl border border-accent-gold/30 inline-block">
+                    <p data-i18n="hero_date_str" class="font-serif text-2xl font-bold tracking-widest text-text-dark uppercase">
+                        25 ҚАЗАН 2026
+                    </p>
+                </div>
+            </div>
+
+            <!-- Countdown Timer Block -->
+            <div class="w-full space-y-3 pt-6 border-t border-accent-gold/20 mt-4">
+                <p data-i18n="countdown_title" class="text-xs uppercase tracking-widest text-text-muted font-bold">
+                    Той салтанатына дейін:
+                </p>
+                <div class="grid grid-cols-4 gap-2 text-center" id="countdown">
+                    <div class="glass-card p-2.5 rounded-xl border-accent-gold/30">
+                        <span id="days" class="font-serif text-2xl font-bold text-accent-gold-dark block">00</span>
+                        <span data-i18n="days" class="text-[11px] font-bold uppercase text-text-muted">Күн</span>
+                    </div>
+                    <div class="glass-card p-2.5 rounded-xl border-accent-gold/30">
+                        <span id="hours" class="font-serif text-2xl font-bold text-accent-gold-dark block">00</span>
+                        <span data-i18n="hours" class="text-[11px] font-bold uppercase text-text-muted">Сағат</span>
+                    </div>
+                    <div class="glass-card p-2.5 rounded-xl border-accent-gold/30">
+                        <span id="minutes" class="font-serif text-2xl font-bold text-accent-gold-dark block">00</span>
+                        <span data-i18n="minutes" class="text-[11px] font-bold uppercase text-text-muted">Минут</span>
+                    </div>
+                    <div class="glass-card p-2.5 rounded-xl border-accent-gold/30">
+                        <span id="seconds" class="font-serif text-2xl font-bold text-accent-gold-dark block">00</span>
+                        <span data-i18n="seconds" class="text-[11px] font-bold uppercase text-text-muted">Секунд</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="pt-6 animate-bounce">
+                <i data-lucide="chevron-down" class="w-6 h-6 text-accent-gold mx-auto"></i>
+            </div>
+        </section>
+
+        <section class="px-6 py-12 text-center bg-white border-y border-accent-gold/20">
+            <div class="space-y-6">
+                
+                <div class="w-12 h-12 rounded-full bg-accent-gold-light flex items-center justify-center mx-auto text-accent-gold-dark">
+                    <i data-lucide="heart" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+
+                <h2 data-i18n="dear_guests_title" class="font-serif text-3xl font-bold text-text-dark">
+                    Құрметті қонақтар!
+                </h2>
+
+                <p data-i18n="invitation_body" class="text-base sm:text-lg leading-relaxed text-text-dark font-medium">
+                    Сіздерді өміріміздегі ең қуанышты әрі маңызды сәт — үйлену тойымыздың куәсі болуға және ақ баталарыңызды беруге шақырамыз!
+                </p>
+
+                <div class="p-5 rounded-2xl bg-bg-paper border-2 border-accent-gold/30 italic font-serif text-lg text-text-dark">
+                    <p data-i18n="quote_text">
+                        «Махаббат — екі жүректің бір ырғақпен соғуы, екі өмірдің бір арнаға тоғысуы.»
+                    </p>
+                </div>
+
+                <div class="pt-4 border-t border-accent-gold/10">
+                    <p data-i18n="hosts_label" class="text-xs uppercase tracking-widest text-accent-gold-dark font-bold">Той иелері:</p>
+                    <p data-i18n="hosts_names" class="font-serif text-2xl font-bold text-text-dark mt-1">Ата-аналарымыз</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-12 text-center space-y-8">
+            <div class="space-y-2">
+                <span data-i18n="location_subtitle" class="text-xs uppercase tracking-widest text-accent-gold-dark font-bold">Уақыты мен мекенжайы</span>
+                <h2 data-i18n="location_title" class="font-serif text-3xl font-bold text-text-dark">Салтанатты Күн</h2>
+            </div>
+
+            <!-- Details Box -->
+            <div class="glass-card rounded-2xl p-6 space-y-6 border-2 border-accent-gold/30 text-left">
+                
+                <!-- Date -->
+                <div class="flex items-start gap-4 pb-4 border-b border-accent-gold/20">
+                    <div class="w-10 h-10 rounded-xl bg-accent-gold-light flex items-center justify-center text-accent-gold-dark shrink-0 mt-1">
+                        <i data-lucide="calendar" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p data-i18n="event_date" class="font-serif text-2xl font-bold text-text-dark">25 Қазан 2026 жыл</p>
+                        <p data-i18n="event_day" class="text-sm font-semibold text-accent-gold-dark">Жексенбі / Воскресенье</p>
+                    </div>
+                </div>
+
+                <!-- Time -->
+                <div class="flex items-start gap-4 pb-4 border-b border-accent-gold/20">
+                    <div class="w-10 h-10 rounded-xl bg-accent-gold-light flex items-center justify-center text-accent-gold-dark shrink-0 mt-1">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p data-i18n="event_time" class="font-serif text-2xl font-bold text-text-dark">Сағат 18:00</p>
+                        <p data-i18n="event_time_note" class="text-sm text-text-muted font-medium">Қонақтардың жиналуы</p>
+                    </div>
+                </div>
+
+                <!-- Venue Name & Address -->
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-accent-gold-light flex items-center justify-center text-accent-gold-dark shrink-0 mt-1">
+                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 data-i18n="venue_name" class="font-serif text-2xl font-bold text-text-dark">«Grand Ballroom» Resto-Hall</h3>
+                        <p data-i18n="venue_address" class="text-base text-text-muted font-medium mt-1">Алматы қ., Достық даңғылы, 125</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Route Buttons (GIANT Touch Targets for Easy Clicking) -->
+                <div class="pt-4 space-y-3">
+                    <p data-i18n="nav_help_text" class="text-xs font-bold text-center uppercase tracking-wider text-text-muted">
+                        Навигатор арқылы картадан ашу:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <a href="https://2gis.kz/almaty/search/%D0%94%D0%BE%D1%81%D1%82%D1%8B%D1%8B%D2%9B%20125" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 py-4 px-4 rounded-xl bg-[#2E9B30] text-white font-bold text-base shadow-md active:scale-95 transition-transform">
+                            <i data-lucide="navigation" class="w-5 h-5"></i>
+                            <span>2GIS Картасы</span>
+                        </a>
+                        <a href="https://yandex.kz/maps/162/almaty/search/Dostyk%20125" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 py-4 px-4 rounded-xl bg-[#FC3F1D] text-white font-bold text-base shadow-md active:scale-95 transition-transform">
+                            <i data-lucide="map" class="w-5 h-5"></i>
+                            <span>Яндекс Карты</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="px-6 py-12 bg-white border-y border-accent-gold/20">
+            <div class="text-center space-y-2 mb-10">
+                <span data-i18n="program_subtitle" class="text-xs uppercase tracking-widest text-accent-gold-dark font-bold">Жоспар</span>
+                <h2 data-i18n="program_title" class="font-serif text-3xl font-bold text-text-dark">Той бағдарламасы</h2>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative border-l-4 border-accent-gold/30 ml-4 sm:ml-6 space-y-8 pl-6">
+                <!-- Item 1 -->
+                <div class="relative">
+                    <div class="absolute -left-[35px] top-0 w-5 h-5 rounded-full bg-accent-gold ring-4 ring-white"></div>
+                    <span class="font-serif font-bold text-accent-gold-dark text-xl block">18:00</span>
+                    <h3 data-i18n="prog_1_title" class="text-lg font-bold text-text-dark">Қонақтардың жиналуы</h3>
+                    <p data-i18n="prog_1_desc" class="text-sm text-text-muted mt-1 font-medium">Welcome drink, фотозона және сәлемдесу</p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative">
+                    <div class="absolute -left-[35px] top-0 w-5 h-5 rounded-full bg-accent-gold ring-4 ring-white"></div>
+                    <span class="font-serif font-bold text-accent-gold-dark text-xl block">18:30</span>
+                    <h3 data-i18n="prog_2_title" class="text-lg font-bold text-text-dark">Жас жұбайлардың шығуы</h3>
+                    <p data-i18n="prog_2_desc" class="text-sm text-text-muted mt-1 font-medium">Салтанатты кіру және мерекелік кештің басталуы</p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative">
+                    <div class="absolute -left-[35px] top-0 w-5 h-5 rounded-full bg-accent-gold ring-4 ring-white"></div>
+                    <span class="font-serif font-bold text-accent-gold-dark text-xl block">19:00</span>
+                    <h3 data-i18n="prog_3_title" class="text-lg font-bold text-text-dark">Беташар & Тілектер</h3>
+                    <p data-i18n="prog_3_desc" class="text-sm text-text-muted mt-1 font-medium">Дәстүрлі салт-дәстүр мен сыйлы қонақтардың тілектері</p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="relative">
+                    <div class="absolute -left-[35px] top-0 w-5 h-5 rounded-full bg-accent-gold ring-4 ring-white"></div>
+                    <span class="font-serif font-bold text-accent-gold-dark text-xl block">23:00</span>
+                    <h3 data-i18n="prog_4_title" class="text-lg font-bold text-text-dark">Той торты & Шоу</h3>
+                    <p data-i18n="prog_4_desc" class="text-sm text-text-muted mt-1 font-medium">Мерекелік торт кесу және шоу-бағдарлама</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-12 text-center space-y-6">
+            <div class="space-y-2">
+                <span data-i18n="dress_subtitle" class="text-xs uppercase tracking-widest text-accent-gold-dark font-bold">Киім үлгісі</span>
+                <h2 data-i18n="dress_title" class="font-serif text-3xl font-bold text-text-dark">Дресс-код</h2>
+            </div>
+
+            <p data-i18n="dress_desc" class="text-base text-text-dark font-medium max-w-xs mx-auto">
+                Бұл күннің әдемі суреттері үшін сіздерден келесі түс гаммасындағы киім таңдауыңызды өтінеміз:
+            </p>
+
+            <!-- Color Palette Swatches -->
+            <div class="flex justify-center items-center gap-3 py-4">
+                <div class="w-10 h-10 rounded-full bg-[#FAF0E6] border-2 border-accent-gold/40 shadow-sm" title="Beige"></div>
+                <div class="w-10 h-10 rounded-full bg-[#E8D3C5] border-2 border-accent-gold/40 shadow-sm" title="Rose"></div>
+                <div class="w-10 h-10 rounded-full bg-[#C5A059] border-2 border-accent-gold/40 shadow-sm" title="Gold"></div>
+                <div class="w-10 h-10 rounded-full bg-[#8C7A6B] border-2 border-accent-gold/40 shadow-sm" title="Taupe"></div>
+                <div class="w-10 h-10 rounded-full bg-[#2C2A29] border-2 border-accent-gold/40 shadow-sm" title="Slate"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="glass-card p-4 rounded-xl text-center space-y-1">
+                    <span data-i18n="dress_men_title" class="font-serif text-xl font-bold block text-text-dark">Ер азаматтар</span>
+                    <span data-i18n="dress_men_desc" class="text-sm text-text-muted font-medium block">Классикалық костюм немесе смокинг</span>
+                </div>
+                <div class="glass-card p-4 rounded-xl text-center space-y-1">
+                    <span data-i18n="dress_women_title" class="font-serif text-xl font-bold block text-text-dark">Нәзік жандылар</span>
+                    <span data-i18n="dress_women_desc" class="text-sm text-text-muted font-medium block">Кешкі немесе коктейль көйлектері</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6 py-12 bg-white border-y border-accent-gold/20">
+            <div class="text-center space-y-2 mb-8">
+                <span data-i18n="rsvp_subtitle" class="text-xs uppercase tracking-widest text-accent-gold-dark font-bold">Жауап беру</span>
+                <h2 data-i18n="rsvp_title" class="font-serif text-3xl font-bold text-text-dark">Қатысуды Растау</h2>
+                <p data-i18n="rsvp_note" class="text-sm text-text-muted font-semibold">Өтініш, 15 Қазанға дейін жауап беріңіз</p>
+            </div>
+
+            <form id="rsvp-form" onsubmit="handleRSVP(event)" class="space-y-5">
+                <div>
+                    <label data-i18n="label_name" class="block text-sm font-bold text-text-dark mb-2">Аты-жөніңіз (Ваше Имя) *</label>
+                    <input type="text" id="rsvp-name" required placeholder="Мысалы: Арман & Айнұр" class="w-full px-4 py-4 rounded-xl border-2 border-accent-gold/30 bg-bg-paper text-base text-text-dark font-medium focus:bg-white transition-all">
+                </div>
+
+                <div>
+                    <label data-i18n="label_attendance" class="block text-sm font-bold text-text-dark mb-2">Тойға келесіз бе? *</label>
+                    <select id="rsvp-attendance" class="w-full px-4 py-4 rounded-xl border-2 border-accent-gold/30 bg-bg-paper text-base text-text-dark font-medium focus:bg-white transition-all">
+                        <option value="yes" data-i18n="opt_yes">Иә, қуанышпен келемін (Да, с удовольствием)</option>
+                        <option value="pair" data-i18n="opt_pair">Жұбыммен келемін (Приду со второй половинкой)</option>
+                        <option value="no" data-i18n="opt_no">Өкінішке орай, келе алмаймын (К сожалению, не смогу)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label data-i18n="label_phone" class="block text-sm font-bold text-text-dark mb-2">Телефон нөміріңіз</label>
+                    <input type="tel" id="rsvp-phone" placeholder="+7 (707) 000-00-00" class="w-full px-4 py-4 rounded-xl border-2 border-accent-gold/30 bg-bg-paper text-base text-text-dark font-medium focus:bg-white transition-all">
+                </div>
+
+                <div>
+                    <label data-i18n="label_wishes" class="block text-sm font-bold text-text-dark mb-2">Тілек немесе ескертулеріңіз</label>
+                    <textarea id="rsvp-message" rows="3" placeholder="Жас жұбайларға ақ тілегіңіз..." class="w-full px-4 py-4 rounded-xl border-2 border-accent-gold/30 bg-bg-paper text-base text-text-dark font-medium focus:bg-white transition-all resize-none"></textarea>
+                </div>
+
+                <!-- Giant Touchable Submit Button -->
+                <button type="submit" class="w-full py-5 px-6 rounded-xl bg-gradient-to-r from-accent-gold to-accent-gold-dark text-white font-bold text-lg shadow-lg active:scale-95 transition-transform tracking-wider uppercase">
+                    <span data-i18n="btn_send">Жіберу (Отправить)</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="px-6 py-12 text-center space-y-6">
+            <div class="space-y-2">
+                <span data-i18n="wishes_subtitle" class="text-xs uppercase tracking-widest text-accent-gold-dark font-bold">Қонақтардың ақ тілектері</span>
+                <h2 data-i18n="wishes_title" class="font-serif text-3xl font-bold text-text-dark">Тілек Кітабы</h2>
+            </div>
+
+            <!-- Wishes Feed -->
+            <div id="wishes-feed" class="space-y-4 max-h-96 overflow-y-auto pr-1 text-left">
+                <!-- Sample Wish 1 -->
+                <div class="glass-card p-5 rounded-2xl border-2 border-accent-gold/20 space-y-1">
+                    <p class="font-serif font-bold text-lg text-text-dark">Нұрлан & Әсем</p>
+                    <p class="text-sm text-text-muted font-medium">Самат, Ружан! Шаңырақтарыңыз биік, босағаларыңыз берік болсын! Бақытты болыңыздар!</p>
+                </div>
+                <!-- Sample Wish 2 -->
+                <div class="glass-card p-5 rounded-2xl border-2 border-accent-gold/20 space-y-1">
+                    <p class="font-serif font-bold text-lg text-text-dark">Данияр аға</p>
+                    <p class="text-sm text-text-muted font-medium">Қос аққудай жарасып, махаббаттарыңыз мәңгі баянды болсын! Құтты болсын тойларыңыз!</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="px-6 py-12 text-center bg-[#1F1E1D] text-white space-y-4">
+            <div class="font-serif text-3xl gold-gradient-text italic font-bold">
+                S & R
+            </div>
+            <p data-i18n="footer_text" class="text-base text-white/80 font-medium">
+                Сіздерді тойымызда асыға күтеміз!
+            </p>
+            <div class="w-16 h-0.5 bg-accent-gold/40 mx-auto"></div>
+            <p class="text-xs text-white/50 tracking-widest uppercase font-bold">
+                Мейрам & Нуркен • 2026
+            </p>
+        </footer>
+
+    </main>
+
+    <div id="rsvp-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center space-y-5 shadow-2xl border-2 border-accent-gold transform scale-90 transition-transform duration-300" id="modal-content">
+            <div class="w-16 h-16 rounded-full bg-accent-gold-light text-accent-gold-dark flex items-center justify-center mx-auto">
+                <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+            </div>
+            <h3 data-i18n="modal_title" class="font-serif text-3xl font-bold text-text-dark">Рахмет!</h3>
+            <p data-i18n="modal_desc" class="text-base text-text-muted font-medium leading-relaxed">
+                Сіздің жауабыңыз бен ақ тілегіңіз қабылданды. Той салтанатында жолыққанша!
+            </p>
+            <button onclick="closeModal()" class="w-full py-4 rounded-xl bg-accent-gold text-white font-bold text-base tracking-wider uppercase shadow-md active:scale-95 transition-transform">
+                <span data-i18n="modal_close">Жабу</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Language Dictionary
+        const translations = {
+            kk: {
+                hero_subtitle: "ТОЙҒА ШАҚЫРУ",
+                hero_date_str: "25 ҚАЗАН 2026",
+                countdown_title: "Той салтанатына дейін:",
+                days: "Күн",
+                hours: "Сағат",
+                minutes: "Минут",
+                seconds: "Секунд",
+                dear_guests_title: "Құрметті қонақтар!",
+                invitation_body: "Сіздерді өміріміздегі ең қуанышты әрі маңызды сәт — үйлену тойымыздың куәсі болуға және ақ баталарыңызды беруге шақырамыз!",
+                quote_text: "«Махаббат — екі жүректің бір ырғақпен соғуы, екі өмірдің бір арнаға тоғысуы.»",
+                hosts_label: "Той иелері:",
+                hosts_names: "Ата-аналарымыз",
+                location_subtitle: "Уақыты мен мекенжайы",
+                location_title: "Салтанатты Күн",
+                event_date: "25 Қазан 2026 жыл",
+                event_day: "Жексенбі",
+                event_time: "Сағат 18:00",
+                event_time_note: "Қонақтардың жиналуы",
+                venue_name: "«Grand Ballroom» Resto-Hall",
+                venue_address: "Алматы қ., Достық даңғылы, 125",
+                nav_help_text: "Навигатор арқылы картадан ашу:",
+                program_subtitle: "Жоспар",
+                program_title: "Той бағдарламасы",
+                prog_1_title: "Қонақтардың жиналуы",
+                prog_1_desc: "Welcome drink, фотозона және сәлемдесу",
+                prog_2_title: "Жас жұбайлардың шығуы",
+                prog_2_desc: "Салтанатты кіру және мерекелік кештің басталуы",
+                prog_3_title: "Беташар & Тілектер",
+                prog_3_desc: "Дәстүрлі салт-дәстүр мен сыйлы қонақтардың тілектері",
+                prog_4_title: "Той торты & Шоу",
+                prog_4_desc: "Мерекелік торт кесу және шоу-бағдарлама",
+                dress_subtitle: "Киім үлгісі",
+                dress_title: "Дресс-код",
+                dress_desc: "Бұл күннің әдемі суреттері үшін сіздерден келесі түс гаммасындағы киім таңдауыңызды өтінеміз:",
+                dress_men_title: "Ер азаматтар",
+                dress_men_desc: "Классикалық костюм немесе смокинг",
+                dress_women_title: "Нәзік жандылар",
+                dress_women_desc: "Кешкі немесе коктейль көйлектері",
+                rsvp_subtitle: "Жауап беру",
+                rsvp_title: "Қатысуды Растау",
+                rsvp_note: "Өтініш, 15 Қазанға дейін жауап беріңіз",
+                label_name: "Аты-жөніңіз (Ваше Имя) *",
+                label_attendance: "Тойға келесіз бе? *",
+                opt_yes: "Иә, қуанышпен келемін",
+                opt_pair: "Жұбыммен келемін",
+                opt_no: "Өкінішке орай, келе алмаймын",
+                label_phone: "Телефон нөміріңіз",
+                label_wishes: "Тілек немесе ескертулеріңіз",
+                btn_send: "Жіберу",
+                wishes_subtitle: "Қонақтардың ақ тілектері",
+                wishes_title: "Тілек Кітабы",
+                footer_text: "Сіздерді тойымызда асыға күтеміз!",
+                modal_title: "Рахмет!",
+                modal_desc: "Сіздің жауабыңыз бен ақ тілегіңіз қабылданды. Той салтанатында жолыққанша!",
+                modal_close: "Жабу"
+            },
+            ru: {
+                hero_subtitle: "СВАДЕБНОЕ ПРИГЛАШЕНИЕ",
+    hero_date_str: "25 ОКТЯБРЯ 2026",
+                countdown_title: "До торжества осталось:",
+                days: "Дней",
+                hours: "Часов",
+                minutes: "Минут",
+                seconds: "Секунд",
+                dear_guests_title: "Дорогие гости!",
+                invitation_body: "Приглашаем вас разделить с нами самый счастливый и памятный день нашей жизни — день нашей свадьбы!",
+                quote_text: "«Любить — это не значит смотреть друг на друга, любить — значит смотреть в одном направлении.»",
+                hosts_label: "Хозяева торжества:",
+                hosts_names: "Наши родители",
+                location_subtitle: "Дата и место проведения",
+                location_title: "Торжественный День",
+                event_date: "25 Октября 2026 года",
+                event_day: "Воскресенье",
+                event_time: "В 18:00 ч.",
+                event_time_note: "Сбор гостей",
+                venue_name: "«Grand Ballroom» Resto-Hall",
+                venue_address: "г. Алматы, пр. Достык, 125",
+                nav_help_text: "Открыть место на карте через навигатор:",
+                program_subtitle: "Расписание",
+                program_title: "Программа вечера",
+                prog_1_title: "Сбор гостей",
+                prog_1_desc: "Welcome drink, фотозона и приветствие",
+                prog_2_title: "Выход молодоженов",
+                prog_2_desc: "Торжественное появление и начало вечера",
+                prog_3_title: "Беташар & Поздравления",
+                prog_3_desc: "Традиционные обряды и тосты дорогих гостей",
+                prog_4_title: "Свадебный торт & Шоу",
+                prog_4_desc: "Разрезание торта и шоу-программа",
+                dress_subtitle: "Пожелания к стилю",
+                dress_title: "Дресс-код",
+                dress_desc: "Для красивых фотографий будем благодарны, если вы подберете наряд в нашей цветовой палитре:",
+                dress_men_title: "Джентльмены",
+                dress_men_desc: "Классический костюм или смокинг",
+                dress_women_title: "Дамы",
+                dress_women_desc: "Вечерние или коктейльные платья",
+                rsvp_subtitle: "Подтверждение",
+                rsvp_title: "Подтверждение Присутствия",
+                rsvp_note: "Пожалуйста, ответьте до 15 Октября",
+                label_name: "Ваше имя и фамилия *",
+                label_attendance: "Сможете ли присутствовать? *",
+                opt_yes: "Да, с удовольствием приду",
+                opt_pair: "Приду со второй половинкой",
+                opt_no: "К сожалению, не смогу",
+                label_phone: "Ваш телефон",
+                label_wishes: "Ваши пожелания",
+                btn_send: "Отправить",
+                wishes_subtitle: "Пожелания гостей",
+                wishes_title: "Книга Пожеланий",
+                footer_text: "С нетерпением ждем вас на нашем празднике!",
+                modal_title: "Спасибо!",
+                modal_desc: "Ваш ответ и пожелание приняты. До встречи на нашем торжестве!",
+                modal_close: "Закрыть"
+            }
+        };
+
+        let currentLang = 'kk';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Highlight language switcher buttons
+            document.getElementById('lang-kk').className = lang === 'kk' 
+                ? 'px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 bg-accent-gold text-white shadow-sm'
+                : 'px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 text-text-muted hover:text-text-dark';
+            
+            document.getElementById('lang-ru').className = lang === 'ru' 
+                ? 'px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 bg-accent-gold text-white shadow-sm'
+                : 'px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200 text-text-muted hover:text-text-dark';
+
+            // Replace strings dynamically
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Target Date for Countdown
+        const weddingDate = new Date('October 25, 2026 18:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "<p class='col-span-4 text-center font-serif text-accent-gold text-xl font-bold'>Салтанат басталды!</p>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // RSVP Form Submission
+        function handleRSVP(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('rsvp-name').value;
+            const message = document.getElementById('rsvp-message').value;
+
+            // Prepend new wish directly to feed if message exists
+            if (message && message.trim() !== '') {
+                const feed = document.getElementById('wishes-feed');
+                const wishCard = document.createElement('div');
+                wishCard.className = 'glass-card p-5 rounded-2xl border-2 border-accent-gold/40 space-y-1 transform transition-all duration-500 scale-95 opacity-0';
+                wishCard.innerHTML = `
+                    <p class="font-serif font-bold text-lg text-text-dark">${escapeHtml(name)}</p>
+                    <p class="text-sm text-text-muted font-medium">${escapeHtml(message)}</p>
+                `;
+                feed.prepend(wishCard);
+
+                setTimeout(() => {
+                    wishCard.classList.remove('scale-95', 'opacity-0');
+                }, 50);
+            }
+
+            // Trigger Confetti
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#C5A059', '#EAD49B', '#FFFFFF']
+                });
+            }
+
+            // Display Modal
+            const modal = document.getElementById('rsvp-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-90');
+            modalContent.classList.add('scale-100');
+
+            // Clear inputs
+            document.getElementById('rsvp-form').reset();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('rsvp-modal');
+            const modalContent = document.getElementById('modal-content');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        // Logic for BG Audio Player
+        let isPlaying = false;
+
+        function toggleAudio() {
+            const audio = document.getElementById('bg-music');
+            const musicBtn = document.getElementById('music-toggle');
+            const musicText = document.getElementById('music-text');
+
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    if (musicBtn) musicBtn.classList.add('bg-accent-gold', 'text-white');
+                    if (musicText) musicText.textContent = 'Стоп';
+                }).catch(e => {
+                    console.log('Audio Playback Error:', e);
+                });
+            } else {
+                audio.pause();
+                isPlaying = false;
+                if (musicBtn) musicBtn.classList.remove('bg-accent-gold', 'text-white');
+                if (musicText) musicText.textContent = 'Музыка';
+            }
+        }
+
+        // Initialize Lucide icons on load
+        window.onload = function() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        };
+    </script>
+
+    <!-- Тег проигрывателя размещается перед закрытием body -->
+    <audio id="bg-music" loop src="Ghetto_Dogs_-_Nagyz_kazaktyn_oleni_(SkySound7.com).mp3"></audio>
+</body>
+</html>
